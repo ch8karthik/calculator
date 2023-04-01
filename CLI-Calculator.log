@@ -1,0 +1,8 @@
+02/04/2023:01:21:21 157 [Calculator.java] [INFO] Calculator [SQRT] - 2.0
+02/04/2023:01:21:21 170 [Calculator.java] [INFO] Calculator [RESULT - SQRT] - 1.4142135623730951
+02/04/2023:01:21:36 036 [Calculator.java] [INFO] Calculator [FACTORIAL] - 3.0
+02/04/2023:01:21:36 038 [Calculator.java] [INFO] Calculator [RESULT - FACTORIAL] - 6.0
+02/04/2023:01:21:45 257 [Calculator.java] [INFO] Calculator [LOG] - 6.0
+02/04/2023:01:21:45 259 [Calculator.java] [INFO] Calculator [RESULT - LOG] - 1.791759469228055
+02/04/2023:01:21:55 437 [Calculator.java] [INFO] Calculator [POWER] - 2.0, 3.0
+02/04/2023:01:21:55 438 [Calculator.java] [INFO] Calculator [RESULT - POWER] - 8.0

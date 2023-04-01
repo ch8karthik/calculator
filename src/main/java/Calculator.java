@@ -1,9 +1,14 @@
 import java.lang.Math;
 import java.util.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Calculator {
 
     double ans;
     double x, y;
+    private static final Logger logger = LogManager.getLogger(Calculator.class);
+
 
     public double add(double x, double y){
         double temp = x + y;
@@ -18,26 +23,31 @@ public class Calculator {
     public double square_root(double x)
     {
         Double squareroot = Math.pow(x, 0.5);
+        logger.info("[SQRT] - " + x);
+        logger.info("[RESULT - SQRT] - " + squareroot);
         return squareroot;
     }
     public static double factorial(double x)
     {
-        
-        if(x==0)
-        return 1;
-
-        else 
+        double ans = 1;
+        for(int i = 1; i <= x; i++)
         {
-            return x*factorial(x-1);
+            ans *= i;
         }
-
+        logger.info("[FACTORIAL] - " + x);
+        logger.info("[RESULT - FACTORIAL] - " + ans);
+        return ans;
     }
     public double natural_log(double x)
     {
+        logger.info("[LOG] - " + x);
+        logger.info("[RESULT - LOG] - " + Math.log(x));
         return Math.log(x);
     }
     public double power(double a , double b)
     {
+        logger.info("[POWER] - " + a + ", " + b);
+        logger.info("[RESULT - POWER] - " + Math.pow(a,b));
         return Math.pow(a,b);
     }
 
@@ -74,8 +84,9 @@ public class Calculator {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-
-        System.out.print("Choose operation \n"+
+        while(true)
+        {
+            System.out.print("Choose operation \n"+
                 "1. Increment \n"+
                 "2. Addition  \n"+
                 "3. Square root  \n"+
@@ -117,6 +128,8 @@ public class Calculator {
 
         Calculator mycalc = new Calculator();
         System.out.println("Your Answer: " +  mycalc.evaluate(op, x, y));
+        }
+        
 
     }
 }
