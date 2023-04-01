@@ -10,4 +10,4 @@
             
                   
           - name: running container
-            shell: docker run -it -d karthikchapalamadugu/calculator        
+            shell: /usr/local/bin/docker run -it -d karthikchapalamadugu/calculator        
