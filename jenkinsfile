@@ -1,0 +1,53 @@
+pipeline {
+    
+    agent any
+    tools { 
+        maven 'maven_1' 
+        dockerTool 'docker_1'
+    }
+
+    stages {
+        stage('Git Pull stage') {
+            steps {
+                git url: 'https://github.com/karthikchapalamadugu/calculator.git',
+                    branch: 'master'
+            }
+        }
+        stage('Maven test'){
+            steps{
+                script{
+                    sh "java --version"
+                    sh '/opt/homebrew/bin/mvn clean test'            
+                } 
+            }
+        }
+        stage('Maven Build'){
+            steps{
+                script{
+                    sh "export MAVEN_HOME=/opt/homebrew/Cellar/maven/3.9.0/libexec"
+                    sh "export PATH=$PATH:$MAVEN_HOME/bin"
+                    sh '/opt/homebrew/bin/mvn clean install'            
+                } 
+            }
+        }
+        stage('Docker Build Image and Push Image'){
+            steps{
+                script{
+                    sh "/usr/local/bin/docker build -t karthikchapalamadugu/calculator:latest ."
+                    sh '/usr/local/bin/docker push karthikchapalamadugu/calculator:latest'
+                }
+            }
+        }
+        stage("Ansible deploy") {
+            steps {
+                script {
+                    // sh "ssh-keygen -t rsa"
+                    // sh "ssh-copy-id  sivani@localhost"
+                    // ansiblePlaybook disableHostKeyChecking: true, installation: 'ansible_1', inventory: 'inventory', playbook: 'p2.yml'
+                    sh "/usr/bin/pip3 install docker"
+                    sh "/opt/homebrew/bin/ansible-playbook playbook.yml -i inventory"
+                }
+            }
+        }
+    }
+} 
