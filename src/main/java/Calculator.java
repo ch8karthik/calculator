@@ -125,6 +125,10 @@ public class Calculator {
             x = scan.nextDouble();
             y = scan.nextDouble();
         }
+        else if (op == 7){
+            System.out.print("invalid");
+
+        }
 
         Calculator mycalc = new Calculator();
         System.out.println("Your Answer: " +  mycalc.evaluate(op, x, y));
